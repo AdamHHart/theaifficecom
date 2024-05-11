@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #2E3131;
+            color: #2E8B57;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .testimonial-input {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            width: 100%;
+        }
+        .testimonial-input input, .testimonial-input textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .testimonial-display {
+            margin-top: 50px;
+            border-top: 2px solid #2E8B57;
+            padding-top: 30px;
+            width: 100%;
+        }
+        .testimonial-item {
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: #2E8B57;
+            color: #2E3131;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+  <div id="banner">
+    <h1 class="title">
+      The AIffice
+    </h1>
+    <h2 class="subtitle">Made With No Soul At All</h2>
+    <!-- <img id="logo" src="public/strip_full.png" alt="strip"> -->
+    <div id="nav">
+      <nav>
+        <button onclick="location.href='index.html';">The AIffice</button>
+        <button onclick="location.href='episodes.html';">Episodes</button>
+        <button onclick="location.href='projects.html';">Projects</button>
+        <button onclick="location.href='projects.html';">Testemonials</button>
+        <!-- <button onclick="location.href='index.html';">Build</button> -->
+      </nav>
+    </div>
+  </div>
+    <div class="container">
+        <h1>Testimonials</h1>
+        <h2>What people have said.</h2>
+        <div class="testimonial-input">
+            <input type="text" id="userName" placeholder="Your Name">
+            <textarea id="testimonialText" placeholder="Write your testimonial..."></textarea>
+            <button onclick="addTestimonial()">Submit</button>
+        </div>
+        <div id="testimonialDisplay" class="testimonial-display">
+        </div>
+    </div>
+    <script>
+        var testimonials = [];
+        function addTestimonial() {
+            var userName = document.getElementById('userName').value.trim();
+            var testimonialText = document.getElementById('testimonialText').value.trim();
+            if (userName && testimonialText) {
+                var fullTestimonial = userName + " says: " + testimonialText;
+                testimonials.push(fullTestimonial);
+                displayTestimonials();
+                document.getElementById('userName').value = '';
+                document.getElementById('testimonialText').value = '';
+            }
+        }
+        function displayTestimonials() {
+            document.getElementById('testimonialDisplay').innerHTML = testimonials.map(function(testimonial) {
+                return '<div class="testimonial-item">' + testimonial + '</div>';
+            }).join('');
+        }
+    </script>
+</body>
+</html>
